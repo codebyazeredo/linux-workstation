@@ -58,7 +58,9 @@ check_system
 
 planned_modules=()
 for module in "${MODULES[@]}"; do
-    [[ -n "${selected[$module]:-}" ]] && planned_modules+=("$module")
+    if [[ -n "${selected[$module]:-}" ]]; then
+        planned_modules+=("$module")
+    fi
 done
 
 log "Serão instalados: ${planned_modules[*]}"
