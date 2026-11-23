@@ -1,0 +1,13 @@
+services:
+  surrealdb:
+    image: surrealdb/surreal:v2
+    restart: unless-stopped
+    user: root 
+    command: start --user ${SURREAL_USER:-root} --pass ${SURREAL_PASS:?Defina SURREAL_PASS no arquivo .env} rocksdb:/data/database.db
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - surrealdb_data:/data
+
+volumes:
+  surrealdb_data:
